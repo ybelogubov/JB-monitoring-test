@@ -1,14 +1,4 @@
 groups:
-- name: targets
-  rules:
-  - alert: monitor_service_down
-    expr: up == 0
-    for: 30s
-    labels:
-      severity: critical
-    annotations:
-      summary: "Monitor service non-operational"
-      description: "Service {{ $labels.instance }} is down."
 
 - name: host
   rules:
@@ -38,3 +28,95 @@ groups:
     annotations:
       summary: "Server storage is almost full"
       description: "Docker host storage usage is {{ humanize $value}}%. Reported by instance {{ $labels.instance }} of job {{ $labels.job }}."
+
+- name: service unavailable
+  rules:
+  - alert: monitor_service_0_down
+    expr: probe_success{instance=~"http://wp-0\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} == 0
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "Monitor service non-operational"
+      description: "Service {{ $labels.instance }} is down."
+
+  - alert: monitor_service_1_down
+    expr: probe_success{instance=~"http://wp-1\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} == 0
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "Monitor service non-operational"
+      description: "Service {{ $labels.instance }} is down."
+
+  - alert: monitor_service_2_down
+    expr: probe_success{instance=~"http://wp-2\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} == 0
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "Monitor service non-operational"
+      description: "Service {{ $labels.instance }} is down."
+
+  - alert: monitor_service_3_down
+    expr: probe_success{instance=~"http://wp-3\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} == 0
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "Monitor service non-operational"
+      description: "Service {{ $labels.instance }} is down."
+
+  - alert: monitor_service_4_down
+    expr: probe_success{instance=~"http://wp-4\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} == 0
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "Monitor service non-operational"
+      description: "Service {{ $labels.instance }} is down."
+
+  - alert: monitor_service_5_down
+    expr: probe_success{instance=~"http://wp-5\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} == 0
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "Monitor service non-operational"
+      description: "Service {{ $labels.instance }} is down."
+
+  - alert: monitor_service_6_down
+    expr: probe_success{instance=~"http://wp-6\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} == 0
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "Monitor service non-operational"
+      description: "Service {{ $labels.instance }} is down."
+
+  - alert: monitor_service_7_down
+    expr: probe_success{instance=~"http://wp-7\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} == 0
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "Monitor service non-operational"
+      description: "Service {{ $labels.instance }} is down."
+
+  - alert: monitor_service_8_down
+    expr: probe_success{instance=~"http://wp-8\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} == 0
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "Monitor service non-operational"
+      description: "Service {{ $labels.instance }} is down."
+
+  - alert: monitor_service_9_down
+    expr: probe_success{instance=~"http://wp-9\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} == 0
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "Monitor service non-operational"
+      description: "Service {{ $labels.instance }} is down."

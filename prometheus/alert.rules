@@ -120,3 +120,95 @@ groups:
     annotations:
       summary: "Monitor service non-operational"
       description: "Service {{ $labels.instance }} is down."
+
+-name: increased latency
+  rules:
+  - alert: service_0_under_highload
+    expr: probe_http_duration_seconds{instance=~"http://wp-0\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} > 0.5
+    for: 15s
+    labels:
+      severity: warning
+    annotations:
+      summary: "increased latency"
+      description: "Service {{ $labels.instance }} is under high workload."    
+
+  - alert: service_1_under_highload
+    expr: probe_http_duration_seconds{instance=~"http://wp-1\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} > 0.5
+    for: 15s
+    labels:
+      severity: warning
+    annotations:
+      summary: "increased latency"
+      description: "Service {{ $labels.instance }} is under high workload."
+
+  - alert: service_2_under_highload
+    expr: probe_http_duration_seconds{instance=~"http://wp-2\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} > 0.5
+    for: 15s
+    labels:
+      severity: warning
+    annotations:
+      summary: "increased latency"
+      description: "Service {{ $labels.instance }} is under high workload." 
+
+  - alert: service_3_under_highload
+    expr: probe_http_duration_seconds{instance=~"http://wp-3\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} > 0.5
+    for: 15s
+    labels:
+      severity: warning
+    annotations:
+      summary: "increased latency"
+      description: "Service {{ $labels.instance }} is under high workload." 
+
+  - alert: service_4_under_highload
+    expr: probe_http_duration_seconds{instance=~"http://wp-4\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} > 0.5
+    for: 15s
+    labels:
+      severity: warning
+    annotations:
+      summary: "increased latency"
+      description: "Service {{ $labels.instance }} is under high workload."
+      
+  - alert: service_5_under_highload
+    expr: probe_http_duration_seconds{instance=~"http://wp-5\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} > 0.5
+    for: 15s
+    labels:
+      severity: warning
+    annotations:
+      summary: "increased latency"
+      description: "Service {{ $labels.instance }} is under high workload."
+
+  - alert: service_6_under_highload
+    expr: probe_http_duration_seconds{instance=~"http://wp-6\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} > 0.5
+    for: 15s
+    labels:
+      severity: warning
+    annotations:
+      summary: "increased latency"
+      description: "Service {{ $labels.instance }} is under high workload."
+
+  - alert: service_7_under_highload
+    expr: probe_http_duration_seconds{instance=~"http://wp-7\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} > 0.5
+    for: 15s
+    labels:
+      severity: warning
+    annotations:
+      summary: "increased latency"
+      description: "Service {{ $labels.instance }} is under high workload."
+
+  - alert: service_8_under_highload
+    expr: probe_http_duration_seconds{instance=~"http://wp-8\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} > 0.5
+    for: 15s
+    labels:
+      severity: warning
+    annotations:
+      summary: "increased latency"
+      description: "Service {{ $labels.instance }} is under high workload."
+
+  - alert: service_9_under_highload
+    expr: probe_http_duration_seconds{instance=~"http://wp-9\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} > 0.5
+    for: 15s
+    labels:
+      severity: warning
+    annotations:
+      summary: "increased latency"
+      description: "Service {{ $labels.instance }} is under high workload."  

@@ -1,0 +1,48 @@
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+
+  # Attach these labels to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+  external_labels:
+      monitor: 'host-monitor'
+
+# Load and evaluate rules in this file every 'evaluation_interval' seconds.
+rule_files:
+  - "alert.rules"
+
+# A scrape configuration containing exactly one endpoint to scrape.
+scrape_configs:
+  - job_name: 'nodeexporter'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['nodeexporter:9100']
+
+  - job_name: 'prometheus'
+    scrape_interval: 10s
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'blackbox'
+    metrics_path: /probe
+    params:
+      module: [http_2xx]  # Look for a HTTP 200 response.
+    static_configs:
+      - targets:
+        - http://wp-0.iurii.test.monitoring.intellij.net/
+        - http://wp-1.iurii.test.monitoring.intellij.net/
+        - http://wp-2.iurii.test.monitoring.intellij.net/
+        - http://wp-3.iurii.test.monitoring.intellij.net/
+        - http://wp-4.iurii.test.monitoring.intellij.net/
+        - http://wp-5.iurii.test.monitoring.intellij.net/
+        - http://wp-6.iurii.test.monitoring.intellij.net/
+        - http://wp-7.iurii.test.monitoring.intellij.net/
+        - http://wp-8.iurii.test.monitoring.intellij.net/
+        - http://wp-9.iurii.test.monitoring.intellij.net/
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox:9115

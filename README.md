@@ -1,5 +1,7 @@
 # JB-monitoring-test
+
 Repo contains code for monitoring services deploy - JB test task. Services:
+
         - http://wp-0.iurii.test.monitoring.intellij.net/
         - http://wp-1.iurii.test.monitoring.intellij.net/
         - http://wp-2.iurii.test.monitoring.intellij.net/
@@ -38,7 +40,7 @@ docker ps -a
 
 ## How to obtain services
 
-1. Prometeus  - runnig on the 9090 port on the host
+1. Prometeus  - running on the 9090 port on the host
 2. Grafana - running on the 9110 port on the host
 3. Node Exporter - running on the 9100 port on the host
 4. BlackBox Exporter - running on the 9115 port on the host

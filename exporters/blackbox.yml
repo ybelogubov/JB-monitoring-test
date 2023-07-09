@@ -12,14 +12,3 @@ modules:
       tls_config:
         insecure_skip_verify: false
       preferred_ip_protocol: "ip4" # defaults to "ip6"
-
-  dns_probe:
-    prober: dns
-    timeout: 60s
-    dns:
-      transport_protocol: "udp"
-      preferred_ip_protocol: "ip4"
-      query_name: "www.google.com"
-      query_type: "A"
-      valid_rcodes:
-        - NOERROR

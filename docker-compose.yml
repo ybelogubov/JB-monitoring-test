@@ -49,6 +49,7 @@ services:
 
   blackbox:
     image: prom/blackbox-exporter:v0.24.0
+    container_name: blackbox_exporter
     volumes:
       - ./exporters/blackbox.yml:/etc/blackbox_exporter/config.yml
     restart: unless-stopped
@@ -58,7 +59,7 @@ services:
       - monitoring
 
   cadvisor:
-    image: google/cadvisor:v0.33.0
+    image: gcr.io/cadvisor/cadvisor
     container_name: cadvisor
     volumes:
       - /:/rootfs:ro
@@ -76,12 +77,10 @@ services:
     container_name: grafana
     volumes:
       - grafana_data:/var/lib/grafana
-      - ./grafana/provisioning:/etc/grafana/provisioning
     environment:
-      - GF_SECURITY_ADMIN_USER=${ADMIN_USER}
-      - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - GF_USERS_ALLOW_SIGN_UP=false
     restart: unless-stopped
     ports:
-      - 3000:3000
+      - 9110:3000
     networks:
       - monitoring

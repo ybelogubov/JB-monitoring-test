@@ -1,6 +1,6 @@
 # JB-monitoring-test
 
-Repo contains code for monitoring services deploy - JB test task. Services:
+Repo contains code for monitoring services deploy - JB test task. Services for monitoring:
 
         - http://wp-0.iurii.test.monitoring.intellij.net/
         - http://wp-1.iurii.test.monitoring.intellij.net/
@@ -38,7 +38,7 @@ docker compose up --build -d
 docker ps -a
 ```
 
-## How to obtain services
+## How to access services
 
 1. Prometeus  - running on the 9090 port on the host
 2. Grafana - running on the 9110 port on the host

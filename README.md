@@ -16,7 +16,7 @@ Repo contains code for monitoring services deploy - JB test task. Services for m
 ## How to deploy
 
 Deploy must be performed by using Docker Compose
-1. Install [Docker Engione and Docker Compose](https://docs.docker.com/engine/install/ubuntu/)
+1. Install [Docker Engine and Docker Compose](https://docs.docker.com/engine/install/ubuntu/)
 ```
  sudo apt-get update
  sudo apt-get install ca-certificates curl gnupg lsb-release

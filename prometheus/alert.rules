@@ -54,7 +54,7 @@ groups:
 - name: Nodeexporter is down on host
   rules:
   - alert: nodeexporter on monitoring host
-    expr: up{instance='nodeexporter:9100'} = 0
+    expr: up{instance="nodeexporter:9100"} == 0
     for: 30s
     labels:
       severity: critical
@@ -63,7 +63,7 @@ groups:
       description: "Nodeexporter on host {{ $labels.instance }} is down."
 
   - alert: Nodeexporter on service hosts
-    expr: up{instance=~'wp-.+\\.iurii\\.test\\.monitoring\\.intellij\\.net/:9100'} = 0
+    expr: up{instance=~"wp-.+\\.iurii\\.test\\.monitoring\\.intellij\\.net:9100"} == 0
     for: 30s
     labels:
       severity: critical

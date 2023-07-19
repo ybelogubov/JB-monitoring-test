@@ -61,9 +61,8 @@ groups:
     annotations:
       summary: "Nodeexporter is down on host"
       description: "Nodeexporter on host {{ $labels.instance }} is down."
-      
-  rules:
-  - alert: nodeexporter on service hosts
+
+  - alert: Nodeexporter on service hosts
     expr: up{instance=~'wp-.+\\.iurii\\.test\\.monitoring\\.intellij\\.net/:9100'} = 0
     for: 30s
     labels:

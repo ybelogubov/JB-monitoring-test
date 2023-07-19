@@ -31,89 +31,8 @@ groups:
 
 - name: service unavailable
   rules:
-  - alert: monitor_service_0_down
-    expr: probe_success{instance=~"http://wp-0\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} == 0
-    for: 30s
-    labels:
-      severity: critical
-    annotations:
-      summary: "Monitor service non-operational"
-      description: "Service {{ $labels.instance }} is down."
-
-  - alert: monitor_service_1_down
-    expr: probe_success{instance=~"http://wp-1\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} == 0
-    for: 30s
-    labels:
-      severity: critical
-    annotations:
-      summary: "Monitor service non-operational"
-      description: "Service {{ $labels.instance }} is down."
-
-  - alert: monitor_service_2_down
-    expr: probe_success{instance=~"http://wp-2\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} == 0
-    for: 30s
-    labels:
-      severity: critical
-    annotations:
-      summary: "Monitor service non-operational"
-      description: "Service {{ $labels.instance }} is down."
-
-  - alert: monitor_service_3_down
-    expr: probe_success{instance=~"http://wp-3\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} == 0
-    for: 30s
-    labels:
-      severity: critical
-    annotations:
-      summary: "Monitor service non-operational"
-      description: "Service {{ $labels.instance }} is down."
-
-  - alert: monitor_service_4_down
-    expr: probe_success{instance=~"http://wp-4\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} == 0
-    for: 30s
-    labels:
-      severity: critical
-    annotations:
-      summary: "Monitor service non-operational"
-      description: "Service {{ $labels.instance }} is down."
-
-  - alert: monitor_service_5_down
-    expr: probe_success{instance=~"http://wp-5\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} == 0
-    for: 30s
-    labels:
-      severity: critical
-    annotations:
-      summary: "Monitor service non-operational"
-      description: "Service {{ $labels.instance }} is down."
-
-  - alert: monitor_service_6_down
-    expr: probe_success{instance=~"http://wp-6\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} == 0
-    for: 30s
-    labels:
-      severity: critical
-    annotations:
-      summary: "Monitor service non-operational"
-      description: "Service {{ $labels.instance }} is down."
-
-  - alert: monitor_service_7_down
-    expr: probe_success{instance=~"http://wp-7\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} == 0
-    for: 30s
-    labels:
-      severity: critical
-    annotations:
-      summary: "Monitor service non-operational"
-      description: "Service {{ $labels.instance }} is down."
-
-  - alert: monitor_service_8_down
-    expr: probe_success{instance=~"http://wp-8\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} == 0
-    for: 30s
-    labels:
-      severity: critical
-    annotations:
-      summary: "Monitor service non-operational"
-      description: "Service {{ $labels.instance }} is down."
-
-  - alert: monitor_service_9_down
-    expr: probe_success{instance=~"http://wp-9\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} == 0
+  - alert: service is down
+    expr: probe_success{instance=~"http://wp-.+\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} == 0
     for: 30s
     labels:
       severity: critical
@@ -124,16 +43,7 @@ groups:
 - name: increased latency
   rules:
   - alert: service_0_under_highload
-    expr: probe_http_duration_seconds{instance=~"http://wp-0\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} > 0.5
-    for: 15s
-    labels:
-      severity: warning
-    annotations:
-      summary: "increased latency"
-      description: "Service {{ $labels.instance }} is under high workload."    
-
-  - alert: service_1_under_highload
-    expr: probe_http_duration_seconds{instance=~"http://wp-1\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} > 0.5
+    expr: probe_http_duration_seconds{instance=~"http://wp-.+\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} > 0.5
     for: 15s
     labels:
       severity: warning
@@ -141,74 +51,23 @@ groups:
       summary: "increased latency"
       description: "Service {{ $labels.instance }} is under high workload."
 
-  - alert: service_2_under_highload
-    expr: probe_http_duration_seconds{instance=~"http://wp-2\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} > 0.5
-    for: 15s
+- name: Nodeexporter is down on host
+  rules:
+  - alert: nodeexporter on monitoring host
+    expr: up{instance='nodeexporter:9100'} = 0
+    for: 30s
     labels:
-      severity: warning
+      severity: critical
     annotations:
-      summary: "increased latency"
-      description: "Service {{ $labels.instance }} is under high workload." 
-
-  - alert: service_3_under_highload
-    expr: probe_http_duration_seconds{instance=~"http://wp-3\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} > 0.5
-    for: 15s
-    labels:
-      severity: warning
-    annotations:
-      summary: "increased latency"
-      description: "Service {{ $labels.instance }} is under high workload." 
-
-  - alert: service_4_under_highload
-    expr: probe_http_duration_seconds{instance=~"http://wp-4\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} > 0.5
-    for: 15s
-    labels:
-      severity: warning
-    annotations:
-      summary: "increased latency"
-      description: "Service {{ $labels.instance }} is under high workload."
+      summary: "Nodeexporter is down on host"
+      description: "Nodeexporter on host {{ $labels.instance }} is down."
       
-  - alert: service_5_under_highload
-    expr: probe_http_duration_seconds{instance=~"http://wp-5\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} > 0.5
-    for: 15s
+  rules:
+  - alert: nodeexporter on service hosts
+    expr: up{instance=~'wp-.+\\.iurii\\.test\\.monitoring\\.intellij\\.net/:9100'} = 0
+    for: 30s
     labels:
-      severity: warning
+      severity: critical
     annotations:
-      summary: "increased latency"
-      description: "Service {{ $labels.instance }} is under high workload."
-
-  - alert: service_6_under_highload
-    expr: probe_http_duration_seconds{instance=~"http://wp-6\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} > 0.5
-    for: 15s
-    labels:
-      severity: warning
-    annotations:
-      summary: "increased latency"
-      description: "Service {{ $labels.instance }} is under high workload."
-
-  - alert: service_7_under_highload
-    expr: probe_http_duration_seconds{instance=~"http://wp-7\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} > 0.5
-    for: 15s
-    labels:
-      severity: warning
-    annotations:
-      summary: "increased latency"
-      description: "Service {{ $labels.instance }} is under high workload."
-
-  - alert: service_8_under_highload
-    expr: probe_http_duration_seconds{instance=~"http://wp-8\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} > 0.5
-    for: 15s
-    labels:
-      severity: warning
-    annotations:
-      summary: "increased latency"
-      description: "Service {{ $labels.instance }} is under high workload."
-
-  - alert: service_9_under_highload
-    expr: probe_http_duration_seconds{instance=~"http://wp-9\\.iurii\\.test\\.monitoring\\.intellij\\.net/"} > 0.5
-    for: 15s
-    labels:
-      severity: warning
-    annotations:
-      summary: "increased latency"
-      description: "Service {{ $labels.instance }} is under high workload."  
+      summary: "Nodeexporter is down on service host"
+      description: "Nodeexporter on host {{ $labels.instance }} is down."

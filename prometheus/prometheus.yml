@@ -16,7 +16,18 @@ scrape_configs:
   - job_name: 'nodeexporter'
     scrape_interval: 5s
     static_configs:
-      - targets: ['nodeexporter:9100']
+      - targets:
+        - nodeexporter:9100
+        - wp-0.iurii.test.monitoring.intellij.net:9100
+        - wp-1.iurii.test.monitoring.intellij.net:9100
+        - wp-2.iurii.test.monitoring.intellij.net:9100
+        - wp-3.iurii.test.monitoring.intellij.net:9100
+        - wp-4.iurii.test.monitoring.intellij.net:9100
+        - wp-5.iurii.test.monitoring.intellij.net:9100
+        - wp-6.iurii.test.monitoring.intellij.net:9100
+        - wp-7.iurii.test.monitoring.intellij.net:9100
+        - wp-8.iurii.test.monitoring.intellij.net:9100
+        - wp-9.iurii.test.monitoring.intellij.net:9100
 
   - job_name: 'prometheus'
     scrape_interval: 10s

@@ -1,0 +1,14 @@
+all:
+  children:
+    wordpress_services:
+      hosts:
+        wp-0.iurii.test.monitoring.intellij.net:
+        wp-1.iurii.test.monitoring.intellij.net:
+        wp-2.iurii.test.monitoring.intellij.net:
+        wp-3.iurii.test.monitoring.intellij.net:
+        wp-4.iurii.test.monitoring.intellij.net:
+        wp-5.iurii.test.monitoring.intellij.net:
+        wp-6.iurii.test.monitoring.intellij.net:
+        wp-7.iurii.test.monitoring.intellij.net:
+        wp-8.iurii.test.monitoring.intellij.net:
+        wp-9.iurii.test.monitoring.intellij.net:

@@ -1,0 +1,19 @@
+---
+- name: Create Nodeexporter container
+  community.docker.docker_container:
+    name: nodeexporter
+    image: "{{ nodeexporter_image }}"
+    state: started
+    recreate: true
+    published_ports:
+      - "{{ nodeexporter_port }}:{{ nodeexporter_port }}"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
+  become: true

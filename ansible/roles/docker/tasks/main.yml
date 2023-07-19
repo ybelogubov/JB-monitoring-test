@@ -1,0 +1,34 @@
+---
+- name: Install apt-transport-https
+  ansible.builtin.apt:
+    name:
+        - apt-transport-https
+        - ca-certificates
+        - lsb-release
+        - gnupg
+    state: latest
+    update_cache: true
+  become: true
+
+- name: Add signing key
+  ansible.builtin.apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+  become: true
+
+- name: Add repository into sources list
+  ansible.builtin.apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu jammy stable
+    state: present
+  become: true
+
+- name: Install Docker
+  ansible.builtin.apt:
+    name:
+        - docker
+        - docker.io
+        - docker-compose
+        - docker-registry
+    state: latest
+    update_cache: true
+  become: true

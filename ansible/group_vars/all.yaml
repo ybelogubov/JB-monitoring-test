@@ -1,3 +1,2 @@
-service_user: ansible
 nodeexporter_image: "prom/node-exporter:v1.6.0"
 nodeexporter_port: 9100
